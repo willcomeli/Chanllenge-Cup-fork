@@ -1,4 +1,5 @@
 from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi.concurrency import run_in_threadpool
 
 from backend.app.responses import ok
 from backend.app.services.pipeline_service import get_batch, list_batches, process_batch
@@ -15,9 +16,11 @@ async def create_jd_batch(file: UploadFile = File(...)) -> dict:
     if len(content) > 20 * 1024 * 1024:
         raise HTTPException(status_code=413, detail="JD 批次不能超过 20 MB")
     try:
-        return ok(process_batch(file.filename or "jobs.jsonl", content))
+        return ok(await run_in_threadpool(process_batch, file.filename or "jobs.jsonl", content))
     except (ValueError, UnicodeDecodeError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except RuntimeError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
 @router.get("/jd-batches")

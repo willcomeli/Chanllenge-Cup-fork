@@ -68,12 +68,35 @@ def test_graph_endpoint_uses_processed_jsonl_graph_data() -> None:
 def test_jd_batch_upload_is_visible_in_existing_batch_list(tmp_path, monkeypatch) -> None:
     import backend.app.services.pipeline_service as pipeline_service
 
+    class FakeJdClient:
+        model = "fake-jd-model"
+
+        def complete_json(self, _system_prompt, user_payload):
+            return {
+                "items": [
+                    {
+                        "sourceId": job["sourceId"],
+                        "scope": "in_scope",
+                        "position": {"id": "pos_java_engineer", "name": "Java 开发工程师"},
+                        "skills": [
+                            {"id": "skill_java", "name": "Java", "type": "required", "evidenceText": "精通 Java"}
+                        ],
+                    }
+                    for job in user_payload["jobs"]
+                ]
+            }
+
     def temp_processed_path(filename: str) -> Path:
         return tmp_path / filename
 
     monkeypatch.setattr(pipeline_service, "DB_PATH", tmp_path / "career_prism.db")
     monkeypatch.setattr(pipeline_service, "BATCH_ROOT", tmp_path / "batches")
     monkeypatch.setattr(pipeline_service, "processed_path", temp_processed_path)
+    monkeypatch.setattr(
+        pipeline_service.ChatCompletionsClient,
+        "from_env",
+        classmethod(lambda cls, **kwargs: FakeJdClient()),
+    )
 
     record = {
         "source_platform": "test_jobs",
@@ -100,3 +123,8 @@ def test_jd_batch_upload_is_visible_in_existing_batch_list(tmp_path, monkeypatch
     assert created.status_code == 200
     assert listed.status_code == 200
     assert any(batch["id"] == created.json()["data"]["id"] for batch in listed.json()["data"])
+    batch_dir = tmp_path / "batches" / created.json()["data"]["id"]
+    llm_rows = read_jsonl(batch_dir / "llm_predictions.jsonl")
+    assert len(llm_rows) == 1
+    assert llm_rows[0]["model"] == "fake-jd-model"
+    assert llm_rows[0]["positionId"] == "pos_java_engineer"

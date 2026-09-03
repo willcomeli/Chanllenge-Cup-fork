@@ -19,6 +19,9 @@ from backend.app.services.evolution_service import (
     _record_text,
 )
 from src.processing.clean_multisource_jobs import classify_records, read_jsonl as read_raw_jsonl
+from src.llm_client import ChatCompletionsClient, JsonChatClient
+from src.processing.extract_jd_predictions import record_id
+from src.processing.llm_extract_jd_skills import extract_jd_with_llm
 
 
 DB_PATH = processed_path("career_prism.db")
@@ -115,6 +118,31 @@ def _record_skills(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(skills, key=lambda item: (-item["frequency"], item["name"]))
 
 
+def _llm_record_skills(
+    records: list[dict[str, Any]], predictions: dict[str, dict[str, Any]]
+) -> list[dict[str, Any]]:
+    counts: Counter[tuple[str, str]] = Counter()
+    for record in records:
+        prediction = predictions.get(record_id(record)) or {}
+        for skill in prediction.get("skills") or []:
+            skill_id = str(skill.get("id") or "").strip()
+            name = str(skill.get("name") or SKILL_NAME_MAP.get(skill_id) or "").strip()
+            if skill_id and name:
+                counts[(skill_id, name)] += 1
+        for candidate in prediction.get("newSkillCandidates") or []:
+            name = str(candidate.get("name") or "").strip()
+            if name:
+                candidate_id = f"candidate_skill_{uuid.uuid5(uuid.NAMESPACE_URL, name.casefold()).hex[:12]}"
+                counts[(candidate_id, name)] += 1
+    return sorted(
+        (
+            {"id": skill_id, "name": name, "frequency": frequency, "weight": round(frequency / len(records), 2)}
+            for (skill_id, name), frequency in counts.items()
+        ),
+        key=lambda item: (-item["frequency"], item["name"]),
+    )
+
+
 def _update_unchanged_position_stats(updates: list[tuple[str, list[dict[str, Any]]]]) -> None:
     if not updates:
         return
@@ -145,7 +173,12 @@ def _registry_match(connection: sqlite3.Connection, title: str) -> tuple[str, st
     return None
 
 
-def process_batch(filename: str, content: bytes) -> dict[str, Any]:
+def process_batch(
+    filename: str,
+    content: bytes,
+    *,
+    llm_client: JsonChatClient | None = None,
+) -> dict[str, Any]:
     batch_id = f"batch_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
     batch_dir = BATCH_ROOT / batch_id
     batch_dir.mkdir(parents=True, exist_ok=True)
@@ -156,6 +189,16 @@ def process_batch(filename: str, content: bytes) -> dict[str, Any]:
     rejected_count = len(parse_rejections) + len(rejected) + len(review_boundary)
     write_jsonl(batch_dir / "relevant_jobs.jsonl", relevant)
     write_jsonl(batch_dir / "rejected_jobs.jsonl", parse_rejections + rejected)
+
+    client = llm_client or ChatCompletionsClient.from_env(timeout=120, retries=2)
+    llm_predictions = extract_jd_with_llm(
+        relevant,
+        client,
+        split=f"jd_batch:{batch_id}",
+        batch_size=5,
+    ) if relevant else []
+    write_jsonl(batch_dir / "llm_predictions.jsonl", llm_predictions)
+    predictions_by_id = {str(item.get("sourceId") or ""): item for item in llm_predictions}
 
     with _connect() as connection:
         _seed_registry(connection)
@@ -171,14 +214,17 @@ def process_batch(filename: str, content: bytes) -> dict[str, Any]:
         groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
         group_meta: dict[str, tuple[str | None, str]] = {}
         for record in unseen:
-            matched = _registry_match(connection, record["title"])
-            if matched:
-                key = f"existing:{matched[0]}"
-                group_meta[key] = (matched[0], matched[1])
+            prediction = predictions_by_id.get(record_id(record)) or {}
+            predicted_position = prediction.get("position") or {}
+            position_id = str(predicted_position.get("id") or "")
+            position_name = str(predicted_position.get("name") or record["title"])
+            if position_id in POSITION_NAME_MAP and not prediction.get("isNewPositionCandidate"):
+                key = f"existing:{position_id}"
+                group_meta[key] = (position_id, POSITION_NAME_MAP[position_id])
             else:
-                normalized = _normalize_position_title(record["title"])
+                normalized = _normalize_position_title(position_name)
                 key = f"candidate:{normalized}"
-                group_meta[key] = (None, record["title"])
+                group_meta[key] = (None, position_name)
             groups[key].append(record)
 
         graph_skills = _graph_position_skills()
@@ -188,7 +234,7 @@ def process_batch(filename: str, content: bytes) -> dict[str, Any]:
         unchanged_updates: list[tuple[str, list[dict[str, Any]]]] = []
         for key, records in groups.items():
             position_id, position_name = group_meta[key]
-            skills = _record_skills(records)
+            skills = _llm_record_skills(records, predictions_by_id)
             companies = sorted({record.get("company", "未知公司") for record in records})
             evidence_ids = [record["source_id"] for record in records]
             if position_id is None:

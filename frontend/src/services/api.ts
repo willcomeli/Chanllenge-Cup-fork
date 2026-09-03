@@ -9,6 +9,7 @@ interface RequestOptions {
   method?: Method
   params?: Record<string, QueryValue>
   body?: unknown
+  timeoutMs?: number
 }
 
 const withQuery = (path: string, params?: RequestOptions['params']) => {
@@ -23,7 +24,7 @@ const withQuery = (path: string, params?: RequestOptions['params']) => {
 const request = async <T>(path: string, options: RequestOptions = {}): Promise<ApiResponse<T>> => {
   const headers = new Headers()
   const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), 30_000)
+  const timeout = window.setTimeout(() => controller.abort(), options.timeoutMs ?? 30_000)
   const init: RequestInit = { method: options.method ?? 'GET', signal: controller.signal }
 
   if (options.body instanceof FormData) {
@@ -58,7 +59,7 @@ export const api = {
   createJdBatch: (file: File): Promise<ApiResponse<JdBatch>> => {
     const body = new FormData()
     body.set('file', file)
-    return request<JdBatch>('/api/v1/jd-batches', { method: 'POST', body })
+    return request<JdBatch>('/api/v1/jd-batches', { method: 'POST', body, timeoutMs: 300_000 })
   },
   getDashboard: (): Promise<ApiResponse<DashboardSummary>> => request<DashboardSummary>('/api/v1/dashboard'),
   getDashboardSummary: (): Promise<ApiResponse<DashboardSummary>> => request<DashboardSummary>('/api/v1/dashboard/summary'),
