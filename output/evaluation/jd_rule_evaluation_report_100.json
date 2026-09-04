@@ -1,0 +1,358 @@
+{
+  "errorCases": [
+    {
+      "expectedPositionId": "pos_llm_engineer",
+      "extraSkills": [
+        "skill_rag_eval"
+      ],
+      "missingSkills": [
+        "skill_llm",
+        "skill_testing"
+      ],
+      "predictedPositionId": "candidate_0d8acbf9c1",
+      "sourceId": "alibaba_campus:199905060005",
+      "title": "模型评测实习生"
+    },
+    {
+      "expectedPositionId": "pos_data_analyst",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_87d699fe6a",
+      "sourceId": "alibaba_campus:199907780113",
+      "title": "数据标注运营实习生"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_6781581020",
+      "sourceId": "bytedance:7224465349646797117",
+      "title": "高性能计算研发工程师-Seed"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_cc6ff11f93",
+      "sourceId": "bytedance:7262932430881098044",
+      "title": "Elasticsearch高级研发工程师"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_rag_eval"
+      ],
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "predictedPositionId": "candidate_f1be9fe948",
+      "sourceId": "bytedance:7307438108063828251",
+      "title": "网络传输协议资深专家-基础架构"
+    },
+    {
+      "expectedPositionId": "pos_hardware_engineer",
+      "extraSkills": [],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_125d6e6c05",
+      "sourceId": "bytedance:7376513558744582410",
+      "title": "高级NFC软件开发工程师-豆包手机助手"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [
+        "skill_frontend"
+      ],
+      "predictedPositionId": "candidate_44255f797f",
+      "sourceId": "bytedance:7436295849074018568",
+      "title": "Camera App开发工程师-移动OS"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_6e0c8e8d64",
+      "sourceId": "bytedance:7480100476046887176",
+      "title": "Android Framework开发工程师-移动OS(北京/深圳)"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_frontend"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_71376781be",
+      "sourceId": "bytedance:7504224784105982226",
+      "title": "PICO互联工程师(PC方向)-移动OS"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_hardware"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_f255a7f59e",
+      "sourceId": "bytedance:7544983430413863175",
+      "title": "RTC视频工程开发工程师-视频与边缘"
+    },
+    {
+      "expectedPositionId": "pos_llm_engineer",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "candidate_41a6e5ff10",
+      "sourceId": "bytedance:7566272650435070213",
+      "title": "大模型推理优化工程师-PICO"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [],
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "predictedPositionId": "candidate_4a82d1456e",
+      "sourceId": "bytedance:7614022756816947509",
+      "title": "内存优化工程师-移动OS(北京/上海)"
+    },
+    {
+      "expectedPositionId": "pos_test_engineer",
+      "extraSkills": [
+        "skill_frontend",
+        "skill_security"
+      ],
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "predictedPositionId": "candidate_17413ea90d",
+      "sourceId": "bytedance:7662317846786967813",
+      "title": "AI质量效能负责人 - 飞书"
+    },
+    {
+      "expectedPositionId": "pos_cloud_infra_engineer",
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_llm"
+      ],
+      "missingSkills": [
+        "skill_ai_codegen",
+        "skill_distributed"
+      ],
+      "predictedPositionId": "candidate_12e330b3ec",
+      "sourceId": "tencent_careers:2070518525277155328",
+      "title": "AI 网络集合通信库运营工程师"
+    },
+    {
+      "expectedPositionId": "pos_ai_agent_engineer",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "predictedPositionId": "candidate_943f86c5a4",
+      "sourceId": "tencent_careers:2075441482017456128",
+      "title": "光子 AI-LLM 高级研究员-游戏智能体方向"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_llm"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "alibaba_campus:199903900044",
+      "title": "算法工程师-电商AIGC视频与图像生成模型方向(T-Star Lab 日常实习)"
+    },
+    {
+      "expectedPositionId": "candidate_other",
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_nlp"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:6970968861713631524",
+      "title": "推荐算法工程师-抖音电商"
+    },
+    {
+      "expectedPositionId": "pos_backend_engineer",
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database",
+        "skill_hardware",
+        "skill_nlp",
+        "skill_security"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:7273737124662577465",
+      "title": "AML机器学习平台研发工程师"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_database",
+        "skill_security"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:7387626281683208499",
+      "title": "大模型算法专家-多模态/代码分析/异常检测"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [],
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:7451900636330854664",
+      "title": "数据挖掘工程师(ROI方向)-今日头条/番茄小说/红果短剧"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_nlp"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:7507108030464231688",
+      "title": "多模态算法工程师-抖音内容理解"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_llm",
+        "skill_multimodal"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:7595809049083742469",
+      "title": "抖音商城推荐算法工程师-抖音电商"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "missingSkills": [
+        "skill_ai_codegen"
+      ],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "bytedance:7657109112141269301",
+      "title": "语音算法工程师(多模态理解大模型-说话人方向)-Data语音"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_distributed"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "meituan_careers:4530808139",
+      "title": "【北斗】AI决策算法研究员(外卖/即时零售方向)"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_security"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "tencent_careers:2051888471664148480",
+      "title": "微信安全-数据算法工程师"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [
+        "skill_nlp"
+      ],
+      "predictedPositionId": "pos_algorithm_engineer",
+      "sourceId": "tencent_careers:2037377303213932544",
+      "title": "微信输入法- 语音识别大模型算法研究员/工程师"
+    },
+    {
+      "expectedPositionId": "pos_ai_agent_engineer",
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "missingSkills": [
+        "skill_llm"
+      ],
+      "predictedPositionId": "pos_backend_engineer",
+      "sourceId": "bytedance:7633454879164860677",
+      "title": "后端开发工程师/专家-Dev Infra"
+    },
+    {
+      "expectedPositionId": "pos_cloud_infra_engineer",
+      "extraSkills": [
+        "skill_database",
+        "skill_security"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_cloud_infra_engineer",
+      "sourceId": "bytedance:7460745521352558856",
+      "title": "服务器交付专家-基础设施(杭州)"
+    },
+    {
+      "expectedPositionId": "pos_algorithm_engineer",
+      "extraSkills": [
+        "skill_database"
+      ],
+      "missingSkills": [],
+      "predictedPositionId": "pos_cloud_infra_engineer",
+      "sourceId": "bytedance:7491139823441545490",
+      "title": "研究科学家-基础设施系统实验室(北京/杭州)"
+    },
+    {
+      "expectedPositionId": "pos_cloud_infra_engineer",
+      "extraSkills": [
+        "skill_database"
+      ],
+      "missingSkills": [
+        "skill_distributed",
+        "skill_python"
+      ],
+      "predictedPositionId": "pos_cloud_infra_engineer",
+      "sourceId": "tencent_careers:1958073221844717568",
+      "title": "混元大模型Infra稳定性研发工程师(深圳/北京/上海/杭州)"
+    }
+  ],
+  "generatedAt": "2026-09-03T05:50:40Z",
+  "invalidLabelCount": 0,
+  "labelCount": 100,
+  "labelPath": "data\\processed\\evaluation\\jd_gold_labels.jsonl",
+  "labeler": "deepseek-v4-flash",
+  "metricSource": "deepseek_gold_evaluation",
+  "missingLabelCount": 0,
+  "overallAccuracy": 0.6796,
+  "positionAccuracy": 0.58,
+  "positionCorrectCount": 58,
+  "predictionInputPath": "",
+  "predictionPath": "output\\evaluation\\jd_rule_predictions_100.jsonl",
+  "runLabel": "current-rule-baseline",
+  "sampleCount": 100,
+  "skillF1": 0.7792,
+  "skillFalseNegative": 40,
+  "skillFalsePositive": 117,
+  "skillPrecision": 0.703,
+  "skillRecall": 0.8738,
+  "skillTruePositive": 277,
+  "testSetPath": "data\\processed\\splits\\jd_test_set_100.jsonl"
+}

@@ -1,0 +1,44 @@
+{
+  "evaluationType": "human_job_match",
+  "formal": false,
+  "sampleCount": 10,
+  "positionPoolSize": 14,
+  "groundTruthSha256": "9b05e63fda6cbef491d632a0282ca15ccff4a02a22aed3b8cfcd960a2ea6d35c",
+  "predictionsSha256": "78f3ff3b847d72caac87f6e9857f574687be456574191a7979a482d520604c34",
+  "positionPoolSha256": "55543aea92cfbe2ba7bed14edb13ee353f2edfc49dd347023f5abb33420e9235",
+  "metrics": {
+    "top1Accuracy": 1.0,
+    "top3Accuracy": 1.0,
+    "mrr": 1.0,
+    "ndcgAt3": 0.9531,
+    "levelMacroF1": 1.0,
+    "missingSkillMicroF1": 0.9714,
+    "matchedSkillMicroF1": 0.6122,
+    "overallScore": 0.9508
+  },
+  "weights": {
+    "top1Accuracy": 0.3,
+    "top3Accuracy": 0.15,
+    "ndcgAt3": 0.1,
+    "levelMacroF1": 0.15,
+    "missingSkillMicroF1": 0.2,
+    "matchedSkillMicroF1": 0.1
+  },
+  "pass": {
+    "overallScore": true,
+    "top1Accuracy": true,
+    "top3Accuracy": true
+  },
+  "errorCases": [
+    {
+      "resumeId": "R02",
+      "expectedBest": "pos_java_engineer",
+      "predictedBest": "pos_java_engineer",
+      "bestRank": 1,
+      "expectedLevel": "中",
+      "predictedLevel": "中",
+      "missingSkillFP": 0,
+      "missingSkillFN": 1
+    }
+  ]
+}

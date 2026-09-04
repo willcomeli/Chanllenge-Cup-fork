@@ -286,6 +286,18 @@ def _partition_at_midpoint(records: List[Dict[str, Any]]) -> tuple[List[Dict[str
     return records[:midpoint], records[midpoint:]
 
 
+def _analysis_record_windows(records: List[Dict[str, Any]]) -> tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """Use real increments when present; otherwise split the packaged corpus for demo analysis."""
+    if not records:
+        return [], []
+    baseline_count = _baseline_record_count()
+    if baseline_count is not None:
+        historical, current = _partition_at_baseline(records)
+        if current:
+            return historical, current
+    return _partition_at_midpoint(records)
+
+
 def _parse_datetime(value: Optional[str]) -> datetime:
     if not value:
         return datetime.min.replace(tzinfo=None)
@@ -386,11 +398,7 @@ def _build_snapshot_windows() -> tuple[Dict[str, Dict[str, Dict[str, Any]]], Dic
     if not records:
         return ({}, {})
 
-    baseline_count = _baseline_record_count()
-    if baseline_count is not None:
-        historical, current = _partition_at_baseline(records)
-    else:
-        historical, current = _partition_at_midpoint(records)
+    historical, current = _analysis_record_windows(records)
 
     def build_window(items: List[Dict[str, Any]]) -> Dict[str, Dict[str, Dict[str, Any]]]:
         by_position: Dict[str, Dict[str, Dict[str, Any]]] = defaultdict(dict)
@@ -470,9 +478,7 @@ def _build_real_snapshot_data() -> tuple[Dict[str, Dict[str, Dict[str, Any]]], D
     history_snapshot, current_snapshot = _build_snapshot_windows()
     if not current_snapshot:
         return ({}, {}, {})
-    _, evidence_records = _partition_at_baseline(records)
-    if not evidence_records:
-        _, evidence_records = _partition_at_midpoint(records)
+    _, evidence_records = _analysis_record_windows(records)
     evidence_store: Dict[str, Dict[str, Any]] = {}
 
     position_buckets: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
@@ -581,9 +587,7 @@ def compute_change_evidence(change_id: str) -> dict:
     position_id = matched.positionId
     skill_id = matched.skillId
     all_records = _load_job_records()
-    _, records = _partition_at_baseline(all_records)
-    if not records and all_records:
-        _, records = _partition_at_midpoint(all_records)
+    _, records = _analysis_record_windows(all_records)
     hits = [
         (idx, record)
         for idx, record in enumerate(records)
@@ -658,9 +662,7 @@ def compute_evidence_detail(evidence_id: str) -> dict:
 
 def compute_emerging_positions(page: int = 1, page_size: int = 20, keyword: str = "") -> dict:
     all_records = _load_job_records()
-    _, records = _partition_at_baseline(all_records)
-    if _baseline_record_count() is None and not records and all_records:
-        records = all_records
+    _, records = _analysis_record_windows(all_records)
     if not records:
         return {"items": [], "total": 0, "page": page, "pageSize": page_size}
 
@@ -681,14 +683,14 @@ def compute_emerging_positions(page: int = 1, page_size: int = 20, keyword: str 
         jobs = record_list["jobs"]
         sample_count = len(jobs)
         source_count = len({company for company in record_list["companies"] if company})
-        if sample_count < 3 or source_count < 2:
+        if sample_count < 2:
             continue
 
         cutoff = datetime(2025, 1, 1, tzinfo=None)
         historical_jobs = [record for record in jobs if record["_parsed_time"].replace(tzinfo=None) < cutoff]
         recent_jobs = [record for record in jobs if record["_parsed_time"].replace(tzinfo=None) >= cutoff]
         # A title seen before the baseline is not a newly discovered position.
-        if historical_jobs or len(recent_jobs) < 3:
+        if historical_jobs or len(recent_jobs) < 2:
             continue
 
         skill_ids = []
@@ -829,7 +831,7 @@ def compute_position_profile(position_id: str) -> dict:
     sample_count = len(position_records)
     source_count = len({record.get("company") for record in position_records if record.get("company")})
     growth_rate = _position_growth(position_records)
-    position_name = POSITION_NAME_MAP.get(position_id, position_id)
+    position_name = POSITION_NAME_MAP.get(position_id) or _display_candidate_title(position_records)
 
     description = (
         f"{position_name}：聚焦{category}方向，"
@@ -848,7 +850,7 @@ def compute_position_profile(position_id: str) -> dict:
         category=category,
         techStack=" · ".join(top_skill_names) if top_skill_names else "通用",
         level="",
-        status="emerging" if growth_rate > 0.1 else "existing",
+        status="emerging" if position_id.startswith("candidate_") or growth_rate > 0.1 else "existing",
         description=description,
         firstSeen=first_seen,
         lastSeen=last_seen,

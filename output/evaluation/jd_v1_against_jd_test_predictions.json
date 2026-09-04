@@ -1,0 +1,1331 @@
+{
+  "evaluationType": "llm_jd_extraction",
+  "formal": false,
+  "sampleCount": 100,
+  "semanticThreshold": 0.8,
+  "groundTruthSha256": "30c31686bcc028534402e339ac895a2f9800c514799b96019a3e39cae54b1095",
+  "predictionsSha256": "19e385acb8341343908baea4073a24d1564fc6db6bd48eed8aa8027f89c46901",
+  "testSetSha256": "bc7e330b5f556ed8d17bc991a8303cc51e5691b52996639adabc222dabc33c82",
+  "candidateJudgmentsSha256": null,
+  "candidatePositionEvaluation": "candidate_flag",
+  "metrics": {
+    "scopeMacroF1": 0.3926,
+    "positionAccuracy": 0.58,
+    "positionStrictIdAccuracy": 0.41,
+    "registryPositionAccuracy": 0.5256,
+    "candidatePositionAccuracy": 0.7727,
+    "skillMicroPrecision": 0.703,
+    "skillMicroRecall": 0.8738,
+    "skillMicroF1": 0.7792,
+    "requirementTypeMacroF1": 0.4457,
+    "requirementTypeAccuracyOnMatchedSkills": 0.5379,
+    "coreScore": 0.6375,
+    "evidenceSupportRate": 1.0,
+    "unsupportedEvidenceRate": 0.0,
+    "responsibilityPrecision": 0.0,
+    "responsibilityRecall": 0.0,
+    "responsibilityF1": 0.0,
+    "scenarioPrecision": 0.0,
+    "scenarioRecall": 0.0,
+    "scenarioF1": 0.0,
+    "newPositionPrecision": 0.0,
+    "newPositionRecall": 0.0,
+    "newPositionF1": 0.0,
+    "newSkillPrecision": 0.0,
+    "newSkillRecall": 0.0,
+    "newSkillF1": 0.0,
+    "similarPositionHitAt1": 0.0,
+    "similarPositionHitAt3": 0.0,
+    "similarPositionMRR": 0.0,
+    "confidenceBrierScore": 0.14,
+    "predictionCoverage": 1.0
+  },
+  "counts": {
+    "invalidScopeCount": 42,
+    "positionEvaluated": 100,
+    "positionCorrect": 58,
+    "positionStrictIdCorrect": 41,
+    "candidatePositionEvaluated": 22,
+    "candidatePositionCorrect": 17,
+    "skillTP": 277,
+    "skillFP": 117,
+    "skillFN": 40,
+    "evidenceTotal": 494,
+    "evidenceSupported": 494,
+    "newSkillTP": 0,
+    "newSkillFP": 0,
+    "newSkillFN": 0,
+    "registryPositionEvaluated": 78,
+    "registryPositionCorrect": 41
+  },
+  "positionRegistry": [
+    {
+      "id": "candidate_other",
+      "name": "候选新岗位"
+    },
+    {
+      "id": "pos_ai_agent_engineer",
+      "name": "AI Agent 研发工程师"
+    },
+    {
+      "id": "pos_algorithm_engineer",
+      "name": "算法工程师"
+    },
+    {
+      "id": "pos_backend_engineer",
+      "name": "后端研发工程师"
+    },
+    {
+      "id": "pos_cloud_infra_engineer",
+      "name": "云计算与基础设施工程师"
+    },
+    {
+      "id": "pos_data_analyst",
+      "name": "数据分析师"
+    },
+    {
+      "id": "pos_data_engineer",
+      "name": "数据开发工程师"
+    },
+    {
+      "id": "pos_game_engineer",
+      "name": "游戏引擎工程师"
+    },
+    {
+      "id": "pos_hardware_engineer",
+      "name": "硬件与芯片工程师"
+    },
+    {
+      "id": "pos_llm_engineer",
+      "name": "大模型应用工程师"
+    },
+    {
+      "id": "pos_security_engineer",
+      "name": "安全工程师"
+    },
+    {
+      "id": "pos_storage_database_engineer",
+      "name": "存储与数据库工程师"
+    },
+    {
+      "id": "pos_test_engineer",
+      "name": "测试开发工程师"
+    }
+  ],
+  "weights": {
+    "scopeMacroF1": 0.1,
+    "positionAccuracy": 0.35,
+    "skillMicroF1": 0.45,
+    "requirementTypeMacroF1": 0.1
+  },
+  "pass": {
+    "coreScore": false,
+    "positionAccuracy": false,
+    "skillMicroF1": false,
+    "evidenceSupportRate": true,
+    "overall": false
+  },
+  "errorCases": [
+    {
+      "sourceId": "alibaba_campus:199903720037",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_e708a3816d",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199905060005",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "candidate_0d8acbf9c1",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_llm",
+        "skill_testing"
+      ],
+      "extraSkills": [
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199907780113",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_data_analyst",
+      "positionPredicted": "candidate_87d699fe6a",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7224465349646797117",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_6781581020",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7262932430881098044",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_cc6ff11f93",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7307438108063828251",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_f1be9fe948",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7319716293929371942",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_acda185a62",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7376513558744582410",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_hardware_engineer",
+      "positionPredicted": "candidate_125d6e6c05",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7436295849074018568",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_44255f797f",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_frontend"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7480100476046887176",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_6e0c8e8d64",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7504224784105982226",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_71376781be",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7544983430413863175",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_f255a7f59e",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7566272650435070213",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "candidate_41a6e5ff10",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7614022756816947509",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_4a82d1456e",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7628535364558801157",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_b55f1591d6",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7662317846786967813",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_test_engineer",
+      "positionPredicted": "candidate_17413ea90d",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_frontend",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2070518525277155328",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_cloud_infra_engineer",
+      "positionPredicted": "candidate_12e330b3ec",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_ai_codegen",
+        "skill_distributed"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_llm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2075441482017456128",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_ai_agent_engineer",
+      "positionPredicted": "candidate_943f86c5a4",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903900044",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_llm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6970968861713631524",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_nlp"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7273737124662577465",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_backend_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database",
+        "skill_hardware",
+        "skill_nlp",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7387626281683208499",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7451900636330854664",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7507108030464231688",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_nlp"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7595809049083742469",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_llm",
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7657109112141269301",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_ai_codegen"
+      ],
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "meituan_careers:4530808139",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_distributed"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2051888471664148480",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2037377303213932544",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_nlp"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7633454879164860677",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_ai_agent_engineer",
+      "positionPredicted": "pos_backend_engineer",
+      "positionPredictedNormalized": "pos_backend_engineer",
+      "missingSkills": [
+        "skill_llm"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7460745521352558856",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_cloud_infra_engineer",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7491139823441545490",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:1958073221844717568",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_cloud_infra_engineer",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [
+        "skill_distributed",
+        "skill_python"
+      ],
+      "extraSkills": [
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7613273119528077573",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "pos_data_engineer",
+      "positionPredictedNormalized": "pos_data_engineer",
+      "missingSkills": [
+        "skill_database",
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2054924143715074048",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "pos_game_engineer",
+      "positionPredictedNormalized": "pos_game_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2046790708928606208",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "pos_game_engineer",
+      "positionPredictedNormalized": "pos_game_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7457906644464470290",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_hardware_engineer",
+      "positionPredicted": "pos_hardware_engineer",
+      "positionPredictedNormalized": "pos_hardware_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7645147766880586037",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_hardware_engineer",
+      "positionPredictedNormalized": "pos_hardware_engineer",
+      "missingSkills": [
+        "skill_algorithm"
+      ],
+      "extraSkills": [
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903980007",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_python"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7303429702801672475",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_ai_codegen",
+        "skill_algorithm",
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7320520262447941926",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_ai_codegen",
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7491557157738760455",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_algorithm"
+      ],
+      "extraSkills": [
+        "skill_multimodal",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7642282081599244549",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2069242484575350784",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_ai_agent_engineer",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_frontend",
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7469705639338789138",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_security_engineer",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7490887863455533320",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_security_engineer",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database",
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7599967803991148805",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6704577570391722253",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_storage_database_engineer",
+      "positionPredicted": "pos_storage_database_engineer",
+      "positionPredictedNormalized": "pos_storage_database_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_go",
+        "skill_java",
+        "skill_python",
+        "skill_security",
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7031784693481965861",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_storage_database_engineer",
+      "positionPredicted": "pos_storage_database_engineer",
+      "positionPredictedNormalized": "pos_storage_database_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_go",
+        "skill_java",
+        "skill_python",
+        "skill_security",
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2028713319375994880",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_storage_database_engineer",
+      "positionPredicted": "pos_storage_database_engineer",
+      "positionPredictedNormalized": "pos_storage_database_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6850352073797749006",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_test_engineer",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [
+        "skill_testing"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_java",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6961289793582418212",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_test_engineer",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [
+        "skill_cloud_native"
+      ],
+      "extraSkills": [
+        "skill_java",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7634137448259815733",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_test_engineer",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_cpp",
+        "skill_java"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199906500001",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_ai_agent_engineer",
+      "positionPredicted": "candidate_d1603b5625",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_distributed",
+        "skill_frontend",
+        "skill_java",
+        "skill_multimodal",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903720003",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "candidate_39f205e266",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_python"
+      ],
+      "extraSkills": [
+        "skill_multi_agent",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7305009305282693427",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_hardware_engineer",
+      "positionPredicted": "candidate_1ee2d988ef",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7347535879454853427",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_hardware_engineer",
+      "positionPredicted": "candidate_175298d89a",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7366450100144523570",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_backend_engineer",
+      "positionPredicted": "candidate_213d0b380e",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7429623668390562086",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_game_engineer",
+      "positionPredicted": "candidate_8cc0fd6f3f",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7476076805125114119",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_cloud_infra_engineer",
+      "positionPredicted": "candidate_79bd802c48",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7488975921577232647",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "candidate_8c62bde573",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_llm"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7532398230567422226",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_cloud_infra_engineer",
+      "positionPredicted": "candidate_7e0879719d",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7572505826717878581",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_f501d50811",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7602479742055909685",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_d7ad34daf3",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7654133341323495733",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_5808c7d59f",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7662316424701987077",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_test_engineer",
+      "positionPredicted": "candidate_17413ea90d",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_frontend",
+        "skill_rag_eval",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2065266730669879296",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_f111e55521",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2076872257417949184",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_296a0336dc",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903880033",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_cpp",
+        "skill_java",
+        "skill_multimodal",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7275634921082571066",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database",
+        "skill_java",
+        "skill_nlp",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7321928529616308489",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_cpp",
+        "skill_go",
+        "skill_java",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7366888370556995850",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_ai_codegen"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2037101976877170688",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "candidate_3a5b379723",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199906700003",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_ai_agent_engineer",
+      "positionPredicted": "candidate_fa45e236e7",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "meituan_careers:4530913541",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7621535059103303989",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:1932983235067904000",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_cloud_infra_engineer",
+      "positionPredicted": "candidate_e4e986c03e",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_cloud_native",
+        "skill_distributed",
+        "skill_testing"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199907880001",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "candidate_b3cb873170",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_hardware"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2076924809798922240",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_ai_agent_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199904260008",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "candidate_other",
+      "positionPredicted": "candidate_098ee09013",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_llm",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:1902190189934100480",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "candidate_c901966c4f",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199905160003",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_data_engineer",
+      "positionPredicted": "candidate_5ab19e3196",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7514636368456599826",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_algorithm_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_nlp"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2054521545946214400",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "pos_security_engineer",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199907980002",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_llm_engineer",
+      "positionPredicted": "candidate_c6b36b3cec",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7628921421481232645",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "pos_hardware_engineer",
+      "positionPredicted": "candidate_cb3ddeb176",
+      "positionPredictedNormalized": "candidate_other",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    }
+  ]
+}

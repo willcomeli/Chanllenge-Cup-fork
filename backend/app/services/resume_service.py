@@ -149,6 +149,10 @@ class ResumeTaskStore:
         with self._lock:
             self._tasks[task_id] = task
 
+        llm_enabled = llm_client is not None or _resume_llm_enabled()
+        if background and not llm_enabled and self._complete_text_task_with_rules(task, content):
+            return task
+
         if background:
             threading.Thread(
                 target=self._process,
@@ -159,6 +163,19 @@ class ResumeTaskStore:
         else:
             self._process(task, content, llm_client, raise_errors=True)
         return task
+
+    def _complete_text_task_with_rules(self, task: ResumeTask, content: bytes) -> bool:
+        try:
+            resume_content = extract_resume_content(task.filename, content, allow_vision=False)
+            task.progress = 45
+            task.updatedAt = _now()
+            task.result = parse_resume_text(task.filename, resume_content.text)
+            task.status = "completed"
+            task.progress = 100
+            task.updatedAt = _now()
+            return True
+        except Exception:
+            return False
 
     def _process(
         self,
@@ -181,7 +198,12 @@ class ResumeTaskStore:
                     llm_client=llm_client,
                 )
             else:
-                task.result = analyze_resume_text(task.filename, resume_content.text, llm_client=llm_client)
+                task.result = analyze_resume_text(
+                    task.filename,
+                    resume_content.text,
+                    llm_client=llm_client,
+                    allow_fallback=not use_multimodal,
+                )
             task.status = "completed"
             task.progress = 100
             task.updatedAt = _now()
@@ -626,6 +648,7 @@ def analyze_resume_text(
     text: str,
     *,
     llm_client: JsonChatClient | None = None,
+    allow_fallback: bool = True,
 ) -> dict[str, Any]:
     rule_profile = parse_resume_text(filename, text)
     if llm_client is None and not _resume_llm_enabled():
@@ -643,6 +666,8 @@ def analyze_resume_text(
         }
         return profile
     except Exception as exc:
+        if not allow_fallback:
+            raise
         rule_profile["llmAnalysis"] = {
             "enabled": True,
             "status": "degraded",

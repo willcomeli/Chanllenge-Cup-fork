@@ -41,6 +41,7 @@ class LlmConfig:
     vision_model: str = DEFAULT_VISION_MODEL
     base_url: str = DEFAULT_BASE_URL
     resume_enabled: bool = False
+    jd_enabled: bool = False
 
     @property
     def configured(self) -> bool:
@@ -78,6 +79,12 @@ def _truthy(value: str) -> bool:
     return value.strip().casefold() in {"1", "true", "yes", "on"}
 
 
+def _configured_flag(value: str, default: bool) -> bool:
+    if not value.strip():
+        return default
+    return _truthy(value)
+
+
 def load_llm_config(root: Path | None = None) -> LlmConfig:
     dotenv = _dotenv_values(root)
     api_key = (
@@ -92,6 +99,10 @@ def load_llm_config(root: Path | None = None) -> LlmConfig:
         vision_model=_setting("LLM_VISION_MODEL", dotenv) or DEFAULT_VISION_MODEL,
         base_url=_setting("LLM_BASE_URL", dotenv) or DEFAULT_BASE_URL,
         resume_enabled=_truthy(_setting("LLM_RESUME_ENABLED", dotenv) or _setting("RESUME_LLM_ENABLED", dotenv)),
+        jd_enabled=_configured_flag(
+            _setting("LLM_JD_ENABLED", dotenv) or _setting("JD_LLM_ENABLED", dotenv),
+            bool(api_key),
+        ),
     )
 
 
@@ -103,6 +114,7 @@ def llm_config_status(root: Path | None = None) -> dict[str, Any]:
         "visionModel": config.vision_model,
         "baseUrl": config.base_url,
         "resumeEnabled": config.resume_enabled,
+        "jdEnabled": config.jd_enabled,
     }
 
 

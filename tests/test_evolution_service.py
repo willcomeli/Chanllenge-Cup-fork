@@ -11,11 +11,11 @@ from backend.app.services.evolution_service import (
 
 
 class EvolutionServiceTest(unittest.TestCase):
-    def test_initial_graph_baseline_has_no_evolution_changes(self):
+    def test_packaged_baseline_falls_back_to_demo_evolution_changes(self):
         payload = compute_evolution_changes(page=1, page_size=20)
 
-        self.assertEqual(payload["total"], 0)
-        self.assertEqual(payload["items"], [])
+        self.assertGreater(payload["total"], 0)
+        self.assertGreater(len(payload["items"]), 0)
 
     def test_returns_evidence_detail_for_real_jd_record(self):
         payload = compute_evidence_detail("jd_0001")

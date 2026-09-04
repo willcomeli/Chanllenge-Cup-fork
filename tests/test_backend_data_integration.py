@@ -6,12 +6,26 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from backend.app.main import app
-from backend.app.services.data_sources import processed_path, read_jsonl
+from backend.app.services.data_sources import processed_path, read_jsonl, write_jsonl
 
 
 def _count_jsonl(path: Path) -> int:
     with path.open("r", encoding="utf-8") as fh:
         return sum(1 for line in fh if line.strip())
+
+
+def _expected_source_count() -> int:
+    raw_paths = [
+        path
+        for path in (processed_path("relevant_jobs.jsonl").parents[1] / "raw").glob("*jobs.jsonl")
+        if not path.name.startswith("demo_")
+    ]
+    if raw_paths:
+        return sum(_count_jsonl(path) for path in raw_paths)
+    cleaning_report = json.loads(processed_path("cleaning_report.json").read_text(encoding="utf-8"))
+    if "input_records" in cleaning_report:
+        return int(cleaning_report["input_records"])
+    return int(cleaning_report["inputRecords"])
 
 
 def test_dashboard_summary_uses_real_local_data_files() -> None:
@@ -21,12 +35,7 @@ def test_dashboard_summary_uses_real_local_data_files() -> None:
     assert response.status_code == 200
     summary = response.json()["data"]
     expected_valid = _count_jsonl(processed_path("relevant_jobs.jsonl"))
-    raw_paths = [
-        path
-        for path in (processed_path("relevant_jobs.jsonl").parents[1] / "raw").glob("*jobs.jsonl")
-        if not path.name.startswith("demo_")
-    ]
-    expected_source = sum(_count_jsonl(path) for path in raw_paths)
+    expected_source = _expected_source_count()
     expected_changes = client.get("/api/v1/evolution/changes?page=1&page_size=1").json()["data"]["total"]
     split_report = json.loads(processed_path("splits/split_report.json").read_text(encoding="utf-8"))
 
@@ -68,35 +77,12 @@ def test_graph_endpoint_uses_processed_jsonl_graph_data() -> None:
 def test_jd_batch_upload_is_visible_in_existing_batch_list(tmp_path, monkeypatch) -> None:
     import backend.app.services.pipeline_service as pipeline_service
 
-    class FakeJdClient:
-        model = "fake-jd-model"
-
-        def complete_json(self, _system_prompt, user_payload):
-            return {
-                "items": [
-                    {
-                        "sourceId": job["sourceId"],
-                        "scope": "in_scope",
-                        "position": {"id": "pos_java_engineer", "name": "Java 开发工程师"},
-                        "skills": [
-                            {"id": "skill_java", "name": "Java", "type": "required", "evidenceText": "精通 Java"}
-                        ],
-                    }
-                    for job in user_payload["jobs"]
-                ]
-            }
-
     def temp_processed_path(filename: str) -> Path:
         return tmp_path / filename
 
     monkeypatch.setattr(pipeline_service, "DB_PATH", tmp_path / "career_prism.db")
     monkeypatch.setattr(pipeline_service, "BATCH_ROOT", tmp_path / "batches")
     monkeypatch.setattr(pipeline_service, "processed_path", temp_processed_path)
-    monkeypatch.setattr(
-        pipeline_service.ChatCompletionsClient,
-        "from_env",
-        classmethod(lambda cls, **kwargs: FakeJdClient()),
-    )
 
     record = {
         "source_platform": "test_jobs",
@@ -123,8 +109,104 @@ def test_jd_batch_upload_is_visible_in_existing_batch_list(tmp_path, monkeypatch
     assert created.status_code == 200
     assert listed.status_code == 200
     assert any(batch["id"] == created.json()["data"]["id"] for batch in listed.json()["data"])
-    batch_dir = tmp_path / "batches" / created.json()["data"]["id"]
-    llm_rows = read_jsonl(batch_dir / "llm_predictions.jsonl")
-    assert len(llm_rows) == 1
-    assert llm_rows[0]["model"] == "fake-jd-model"
-    assert llm_rows[0]["positionId"] == "pos_java_engineer"
+
+
+def test_jd_batch_upload_uses_llm_extraction_and_approval_dedupes_generated_review(tmp_path, monkeypatch) -> None:
+    import backend.app.services.pipeline_service as pipeline_service
+    import backend.app.services.review_service as review_service
+
+    class FakeJdClient:
+        model = "fake-jd-llm"
+
+        def complete_json(self, system_prompt: str, user_payload: dict) -> dict:
+            assert "岗位 JD 结构化解析助手" in system_prompt
+            return {
+                "items": [
+                    {
+                        "sourceId": item["sourceId"],
+                        "scope": "review",
+                        "position": {
+                            "id": "candidate_other",
+                            "name": "认知数字孪生编排工程师",
+                            "evidenceText": item["title"],
+                            "confidence": 0.91,
+                        },
+                        "skills": [
+                            {"id": "skill_python", "requirementType": "required", "confidence": 0.92, "evidenceText": "Python"},
+                            {"id": "skill_rag", "requirementType": "required", "confidence": 0.9, "evidenceText": "RAG"},
+                        ],
+                        "newSkillCandidates": [],
+                        "responsibilities": ["负责认知数字孪生平台研发"],
+                        "scenarios": ["认知数字孪生"],
+                        "isNewPositionCandidate": True,
+                        "reviewReasons": ["新岗位候选"],
+                        "confidence": 0.9,
+                    }
+                    for item in user_payload["jobs"]
+                ]
+            }
+
+    def temp_processed_path(filename: str) -> Path:
+        return tmp_path / filename
+
+    monkeypatch.setenv("LLM_API_KEY", "dummy")
+    monkeypatch.setenv("LLM_JD_ENABLED", "true")
+    monkeypatch.setattr(pipeline_service, "DB_PATH", tmp_path / "career_prism.db")
+    monkeypatch.setattr(pipeline_service, "BATCH_ROOT", tmp_path / "batches")
+    monkeypatch.setattr(pipeline_service, "processed_path", temp_processed_path)
+    monkeypatch.setattr(review_service, "processed_path", temp_processed_path)
+    monkeypatch.setattr(pipeline_service.ChatCompletionsClient, "from_env", lambda: FakeJdClient())
+
+    write_jsonl(temp_processed_path("graph_nodes.jsonl"), [])
+    write_jsonl(temp_processed_path("graph_edges.jsonl"), [])
+
+    records = []
+    for index, company in enumerate(["甲公司", "乙公司", "丙公司"], start=1):
+        records.append(
+            {
+                "source_platform": "test_jobs",
+                "company": company,
+                "recruit_type": "校园招聘",
+                "source_job_id": f"llm-{index}",
+                "job_id": f"llm-{index}",
+                "title": "Java 后端开发工程师",
+                "locations": "长春",
+                "employment_type": "全职",
+                "category": "技术",
+                "publish_time": "2026-09-03",
+                "description": "负责 Java 后端系统，也包含 Python、RAG、认知数字孪生平台研发。",
+                "requirement": "熟悉 Python、RAG、Java、Spring Boot。",
+                "url": f"https://example.com/jobs/llm-{index}",
+                "scraped_at": "2026-09-03 10:00:00+08:00",
+            }
+        )
+    content = "\n".join(json.dumps(record, ensure_ascii=False) for record in records).encode("utf-8")
+
+    batch = pipeline_service.process_batch("llm-batch.jsonl", content)
+    duplicate_generated_review = {
+        "id": "review_position_candidate_duplicate",
+        "type": "新岗位",
+        "title": "认知数字孪生编排工程师",
+        "description": "动态计算出的同名候选岗位",
+        "confidence": 0.8,
+        "sources": ["动态演化服务"],
+        "createdAt": "2026-09-03",
+        "status": "pending",
+        "targetId": "candidate_duplicate",
+        "note": "",
+    }
+    monkeypatch.setattr(review_service, "_build_emerging_reviews", lambda: [duplicate_generated_review])
+    monkeypatch.setattr(review_service, "_build_change_reviews", lambda: [])
+    pending = review_service.get_reviews(status="pending", review_type="新岗位")
+
+    assert batch["newPositionCount"] == 1
+    assert batch["changeCount"] == 0
+    assert len(read_jsonl(tmp_path / "batches" / batch["id"] / "llm_jd_extraction_predictions.jsonl")) == 3
+    assert [item["title"] for item in pending] == ["认知数字孪生编排工程师"]
+
+    decision = review_service.decide_review(pending[0]["id"], "approved")
+    remaining = review_service.get_reviews(status="pending", review_type="新岗位")
+
+    assert decision["graphUpdated"] is True
+    assert remaining == []
+    assert any(node.get("name") == "认知数字孪生编排工程师" for node in read_jsonl(temp_processed_path("graph_nodes.jsonl")))

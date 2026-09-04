@@ -265,6 +265,15 @@ export interface ParsedResumeProfile {
   completeness: number
   skills: ResumeSkill[]
   experiences: ResumeExperience[]
+  analysisSource?: string
+  llmAnalysis?: {
+    enabled?: boolean
+    status?: 'completed' | 'degraded' | 'not_enabled' | string
+    model?: string
+    inputMode?: 'text' | 'vision' | string
+    fallbackSource?: string
+    error?: string
+  }
 }
 
 export interface ResumeTask {

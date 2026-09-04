@@ -54,7 +54,7 @@ def main() -> None:
         for rank, report in enumerate(reports, 1):
             rankings.append({
                 "rank": rank, "positionId": report["positionId"], "positionName": report["positionName"],
-                "score": report["overallScore"], "level": "高" if report["overallScore"] >= 80 else "中" if report["overallScore"] >= 60 else "低",
+                "score": report["overallScore"], "level": report.get("matchLevel") or ("高" if report["overallScore"] >= 80 else "中" if report["overallScore"] >= 60 else "低"),
                 "matchedSkills": report["strengths"], "missingSkills": [gap["name"] for gap in report["gaps"] if gap["requirement"] == "必备技能"],
             })
         predictions.append({"resumeId": resume_id, "inputType": input_type, "skillAlignmentSource": "llm" if args.llm_align else "deterministic_fallback", "skillAlignment": alignment, "rankings": rankings})

@@ -13,6 +13,11 @@ export default function ResumePage() {
   const [taskId, setTaskId] = useState('')
   const [parseError, setParseError] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const isLlmProfile = (nextProfile?: ParsedResumeProfile | null): nextProfile is ParsedResumeProfile => (
+    nextProfile?.analysisSource === 'llm'
+    && nextProfile.llmAnalysis?.enabled === true
+    && nextProfile.llmAnalysis?.status === 'completed'
+  )
 
   useEffect(() => {
     const savedTaskId = window.sessionStorage.getItem('latestResumeTaskId')
@@ -21,9 +26,13 @@ export default function ResumePage() {
     } else if (savedTaskId) {
       api.getResumeTask(savedTaskId)
         .then((res) => {
-          if (!res.data.result) return
+          const nextProfile = res.data.result
+          if (!isLlmProfile(nextProfile)) {
+            window.sessionStorage.removeItem('latestResumeTaskId')
+            return
+          }
           setTaskId(savedTaskId)
-          setProfile(res.data.result)
+          setProfile(nextProfile)
           setParsed(true)
         })
         .catch(() => window.sessionStorage.removeItem('latestResumeTaskId'))
@@ -54,7 +63,11 @@ export default function ResumePage() {
       })
       .then((res) => {
         setTaskId(res.data.taskId)
-        if (res.data.result) setProfile(res.data.result)
+        const nextProfile = res.data.result
+        if (!isLlmProfile(nextProfile)) {
+          throw new Error('未得到 LLM 简历解析结果，请检查 LLM 配置后重新上传')
+        }
+        setProfile(nextProfile)
         setParsed(true)
       })
       .catch((error) => {
@@ -93,7 +106,7 @@ export default function ResumePage() {
         </aside>
 
         {parsed && profile ? <section className="panel resume-result visible">
-          <div className="result-header"><div><span className="section-eyebrow">PARSED PROFILE</span><h2>{profile.candidateName}的能力画像</h2><p>{profile.direction} · {profile.experienceYears} 年项目经验</p></div><span className="parse-score"><small>解析完整度</small><strong>{profile.completeness}<em>%</em></strong></span></div>
+          <div className="result-header"><div><span className="section-eyebrow">LLM PARSED PROFILE</span><h2>{profile.candidateName}的能力画像</h2><p>{profile.direction} · {profile.experienceYears} 年项目经验</p><span className="llm-chip"><Sparkles size={14} />{profile.llmAnalysis?.inputMode === 'vision' ? 'LLM 视觉解析' : 'LLM 文本解析'} · {profile.llmAnalysis?.model}</span></div><span className="parse-score"><small>解析完整度</small><strong>{profile.completeness}<em>%</em></strong></span></div>
           <div className="profile-summary">
             <div><span className="profile-avatar">{profile.candidateName.slice(0, 1)}</span><div><strong>{profile.candidateName}</strong><span>意向：{profile.targetPosition}</span></div></div>
             <span><GraduationCap size={17} />{profile.education}</span><span><BriefcaseBusiness size={17} />{profile.experienceYears} 年相关经验</span>

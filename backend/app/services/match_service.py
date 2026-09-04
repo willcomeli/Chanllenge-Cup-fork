@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import re
 import uuid
 from typing import Any
 
@@ -14,11 +16,105 @@ from src.llm_client import ChatCompletionsClient
 _match_reports: dict[str, dict] = {}
 _skill_alignment_cache: dict[str, tuple[str, list[dict]]] = {}
 LEVEL_SCORE = {"了解": 0.55, "熟悉": 0.7, "掌握": 0.85, "精通": 1.0}
+INTENT_BOOST_POINTS = 45
+JAVA_ROLE_ANCHOR_POINTS = 8
+POSITION_INTENT_CUES: dict[str, tuple[tuple[str, float], ...]] = {
+    "pos_ai_agent_engineer": (
+        ("ai agent", 1.0), ("agent", 0.75), ("智能体", 1.0), ("coding agent", 0.9),
+        ("rag", 0.2), ("开发", 0.2), ("工程师", 0.1),
+    ),
+    "pos_llm_engineer": (
+        ("大模型", 0.9), ("llm", 0.9), ("模型", 0.35), ("rag", 0.25),
+        ("nlp", 0.25), ("judge", 0.35), ("评测", 0.3), ("研究", 0.25),
+    ),
+    "pos_java_engineer": (
+        ("java", 1.0), ("后端", 0.55), ("微服务", 0.45), ("spring", 0.35),
+        ("服务端", 0.35), ("开发", 0.15),
+    ),
+    "pos_backend_engineer": (
+        ("后端", 0.45), ("服务端", 0.45), ("微服务", 0.25), ("分布式", 0.35),
+        ("go", 0.25),
+    ),
+    "pos_algorithm_engineer": (
+        ("算法", 1.0), ("研究", 0.45), ("机器学习", 0.4), ("深度学习", 0.4),
+        ("视觉", 0.35), ("信号处理", 0.45), ("pytorch", 0.25),
+    ),
+    "pos_data_analyst": (
+        ("数据分析", 1.0), ("分析师", 0.6), ("产品", 0.35), ("sql", 0.35),
+        ("excel", 0.35), ("bi", 0.35), ("报表", 0.35),
+    ),
+    "pos_data_engineer": (
+        ("数据开发", 1.0), ("数据工程", 0.9), ("数仓", 0.55), ("etl", 0.55),
+        ("flink", 0.35), ("spark", 0.35),
+    ),
+    "pos_test_engineer": (("测试", 1.0), ("质量", 0.6), ("qa", 0.6), ("自动化测试", 0.5)),
+    "pos_frontend_engineer": (("前端", 1.0), ("react", 0.5), ("typescript", 0.45), ("vue", 0.45)),
+    "pos_cloud_infra_engineer": (("云", 0.7), ("基础设施", 0.8), ("infra", 0.8), ("sre", 0.65), ("运维", 0.5)),
+    "pos_storage_database_engineer": (("数据库", 0.9), ("存储", 0.9), ("检索", 0.5), ("mysql", 0.35), ("redis", 0.35)),
+    "pos_security_engineer": (("安全", 1.0), ("风控", 0.65), ("攻防", 0.55)),
+    "pos_hardware_engineer": (("硬件", 1.0), ("芯片", 0.8), ("异构", 0.65), ("嵌入式", 0.55)),
+    "pos_game_engineer": (("游戏", 1.0), ("ue", 0.6), ("unity", 0.6), ("引擎", 0.55)),
+}
+
+
+def _truthy(value: str) -> bool:
+    return value.strip().casefold() in {"1", "true", "yes", "on"}
+
+
+def _match_llm_enabled() -> bool:
+    return _truthy(os.environ.get("MATCH_LLM_ENABLED") or os.environ.get("LLM_MATCH_ENABLED") or "")
 
 
 def _profile_fingerprint(profile: dict) -> str:
     payload = json.dumps(profile.get("skills") or [], ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def _intent_text(profile: dict) -> str:
+    parts = [
+        profile.get("targetPosition"),
+        profile.get("target_position"),
+        profile.get("direction"),
+        profile.get("summary"),
+    ]
+    return " ".join(str(part or "") for part in parts)
+
+
+def _norm_intent(value: Any) -> str:
+    return re.sub(r"[\s·•,，。:：;；_\-/（）()]+", "", str(value or "").casefold())
+
+
+def _position_intent_score(profile: dict, position: dict) -> float:
+    text = _norm_intent(_intent_text(profile))
+    if not text:
+        return 0.0
+    cues = list(POSITION_INTENT_CUES.get(str(position.get("id") or ""), ()))
+    position_name = str(position.get("name") or "")
+    if position_name:
+        cues.append((position_name, 1.0))
+    score = 0.0
+    for phrase, weight in cues:
+        needle = _norm_intent(phrase)
+        if needle and needle in text:
+            score += weight
+    return min(1.0, score / 1.2)
+
+
+def _role_anchor_bonus(profile: dict, position_id: str) -> int:
+    text = _norm_intent(_intent_text(profile))
+    if position_id == "pos_java_engineer" and "java" in text:
+        return JAVA_ROLE_ANCHOR_POINTS
+    return 0
+
+
+def _match_level(score: int, required_score: int, missing_required_count: int) -> str:
+    if required_score >= 80 and missing_required_count == 0:
+        return "高"
+    if score >= 95:
+        return "高"
+    if score >= 50 or required_score >= 35:
+        return "中"
+    return "低"
 
 
 def _fallback_skill_alignment(profile: dict) -> list[dict]:
@@ -68,7 +164,7 @@ def _aligned_skills_for_task(resume_task_id: str, profile: dict) -> list[dict]:
     cached = _skill_alignment_cache.get(resume_task_id)
     if cached and cached[0] == fingerprint:
         return cached[1]
-    aligned = _align_resume_skills(profile)
+    aligned = _align_resume_skills(profile) if _match_llm_enabled() else _fallback_skill_alignment(profile)
     _skill_alignment_cache[resume_task_id] = (fingerprint, aligned)
     return aligned
 
@@ -165,6 +261,7 @@ def _build_match_report(resume_task_id: str, profile: dict, position_id: str, pe
     resume_skills = {item["standardSkillId"]: item for item in alignment}
     total_weight = sum(max(0.1, item["weight"]) for item in requirements) or 1.0
     covered_weight = required_total = required_covered = preferred_total = preferred_covered = 0.0
+    missing_required_count = 0
     strengths, gaps = [], []
     for item in sorted(requirements, key=lambda value: value["weight"], reverse=True):
         weight = max(0.1, item["weight"])
@@ -179,26 +276,31 @@ def _build_match_report(resume_task_id: str, profile: dict, position_id: str, pe
             if required: required_covered += weight * factor
             else: preferred_covered += weight * factor
         else:
+            missing_required_count += int(required)
             importance = round(min(100, weight * 100))
             gaps.append({"name": item["name"], "priority": "高" if required or importance >= 80 else "中", "requirement": "必备技能" if required else "加分技能", "current": "未识别", "weight": importance})
     coverage = covered_weight / total_weight if requirements else 0.0
     resume_weight = sum(LEVEL_SCORE.get(item.get("level", "熟悉"), .7) for item in resume_skills.values()) or 1.0
     relevant_weight = sum(LEVEL_SCORE.get(item.get("level", "熟悉"), .7) for skill_id, item in resume_skills.items() if any(requirement["id"] == skill_id for requirement in requirements))
     relevance = relevant_weight / resume_weight
-    score = round((2 * coverage * relevance / (coverage + relevance) if coverage + relevance else 0.0) * 100)
+    skill_score = round((2 * coverage * relevance / (coverage + relevance) if coverage + relevance else 0.0) * 100)
+    intent_score = _position_intent_score(profile, position)
+    role_anchor_bonus = _role_anchor_bonus(profile, position_id)
+    score = min(100, skill_score + round(intent_score * INTENT_BOOST_POINTS) + role_anchor_bonus)
     required_score = round(required_covered / required_total * 100) if required_total else 100
     preferred_score = round(preferred_covered / preferred_total * 100) if preferred_total else 100
     experiences = profile.get("experiences", [])
     project_score = min(100, len(experiences) * 30 + len(strengths) * 8)
     skills = profile.get("skills", [])
     depth_score = round(sum(LEVEL_SCORE.get(item.get("level", "熟悉"), 0.7) for item in skills) / max(1, len(skills)) * 100)
+    match_level = _match_level(score, required_score, missing_required_count)
     match_id = f"match_{uuid.uuid4().hex[:10]}"
     report = {
         "matchId": match_id, "resumeTaskId": resume_task_id, "positionId": position_id, "positionName": position["name"], "candidateName": profile.get("candidateName", "未识别姓名"),
-        "overallScore": score, "fitLevel": "高度匹配" if score >= 80 else "中度匹配" if score >= 60 else "有待提升", "benchmarkRank": "暂无排名", "benchmarkSampleCount": 0,
-        "summary": f"技能库对齐后覆盖 {len(strengths)}/{len(requirements)} 项岗位技能，岗位覆盖率 {round(coverage * 100)}%，候选技能相关率 {round(relevance * 100)}%。",
+        "overallScore": score, "matchLevel": match_level, "fitLevel": "高度匹配" if match_level == "高" else "中度匹配" if match_level == "中" else "有待提升", "benchmarkRank": "暂无排名", "benchmarkSampleCount": 0,
+        "summary": f"技能库对齐后覆盖 {len(strengths)}/{len(requirements)} 项岗位技能，岗位覆盖率 {round(coverage * 100)}%，候选技能相关率 {round(relevance * 100)}%，岗位意向相似度 {round(intent_score * 100)}%。",
         "matchedSkillCount": len(strengths), "totalRequirementCount": len(requirements), "gapCount": len(gaps),
-        "dimensions": [{"name": "必备技能", "value": required_score, "color": "#6ee7f9"}, {"name": "加分技能", "value": preferred_score, "color": "#a78bfa"}, {"name": "项目经验", "value": project_score, "color": "#5ee7a8"}, {"name": "技能深度", "value": depth_score, "color": "#fbbf73"}],
+        "dimensions": [{"name": "必备技能", "value": required_score, "color": "#6ee7f9"}, {"name": "加分技能", "value": preferred_score, "color": "#a78bfa"}, {"name": "岗位意向", "value": round(intent_score * 100), "color": "#5ee7a8"}, {"name": "项目经验", "value": project_score, "color": "#5ee7a8"}, {"name": "技能深度", "value": depth_score, "color": "#fbbf73"}],
         "strengths": strengths, "gaps": gaps[:8], "skillAlignment": alignment, "evidence": {"skillEvidenceCount": len(skills), "projectEvidenceCount": len(experiences), "jobSampleCount": int(position.get("sampleCount", 0))},
         "suggestions": [f"优先补齐{gap['name']}，该能力在目标岗位中的重要度为 {gap['weight']}%" for gap in gaps[:3]] or ["技能覆盖较完整，建议补充可量化的项目成果与岗位证据"],
         "learningPath": _resume_learning_path(profile) or _learning_path(gaps),
@@ -212,7 +314,13 @@ def create_match(resume_task_id: str, position_id: str) -> dict:
     task = get_resume_task(resume_task_id)
     profile = task.get("result") or {}
     report = _build_match_report(resume_task_id, profile, position_id, aligned_skills=_aligned_skills_for_task(resume_task_id, profile))
-    guidance = _llm_fit_guidance(profile, report)
+    guidance = _llm_fit_guidance(profile, report) if _match_llm_enabled() else {
+        "summary": report["summary"],
+        "suggestions": report["suggestions"],
+        "learningPath": report["learningPath"],
+        "guidanceSource": "deterministic_fallback",
+        "guidanceModel": "",
+    }
     report.update(guidance)
     _match_reports[report["matchId"]] = report
     return report

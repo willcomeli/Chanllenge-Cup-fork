@@ -1,0 +1,1545 @@
+{
+  "evaluationType": "llm_jd_extraction",
+  "formal": false,
+  "sampleCount": 100,
+  "semanticThreshold": 0.8,
+  "groundTruthSha256": "013a1f10d520846f0478f080bb433604c0b50d30b211b783a378e22e4e95d3b6",
+  "predictionsSha256": "19e385acb8341343908baea4073a24d1564fc6db6bd48eed8aa8027f89c46901",
+  "testSetSha256": "bc7e330b5f556ed8d17bc991a8303cc51e5691b52996639adabc222dabc33c82",
+  "candidateJudgmentsSha256": null,
+  "candidatePositionEvaluation": "candidate_flag",
+  "metrics": {
+    "scopeMacroF1": 0.3926,
+    "positionAccuracy": 0.0,
+    "positionStrictIdAccuracy": 0.0,
+    "registryPositionAccuracy": 0.0,
+    "candidatePositionAccuracy": 0.0,
+    "skillMicroPrecision": 0.703,
+    "skillMicroRecall": 0.8738,
+    "skillMicroF1": 0.7792,
+    "requirementTypeMacroF1": 0.4457,
+    "requirementTypeAccuracyOnMatchedSkills": 0.5379,
+    "coreScore": 0.4345,
+    "evidenceSupportRate": 1.0,
+    "unsupportedEvidenceRate": 0.0,
+    "responsibilityPrecision": 0.0,
+    "responsibilityRecall": 0.0,
+    "responsibilityF1": 0.0,
+    "scenarioPrecision": 0.0,
+    "scenarioRecall": 0.0,
+    "scenarioF1": 0.0,
+    "newPositionPrecision": 0.0,
+    "newPositionRecall": 0.0,
+    "newPositionF1": 0.0,
+    "newSkillPrecision": 0.0,
+    "newSkillRecall": 0.0,
+    "newSkillF1": 0.0,
+    "similarPositionHitAt1": 0.0,
+    "similarPositionHitAt3": 0.0,
+    "similarPositionMRR": 0.0,
+    "confidenceBrierScore": 0.0,
+    "predictionCoverage": 1.0
+  },
+  "counts": {
+    "invalidScopeCount": 42,
+    "positionEvaluated": 100,
+    "positionCorrect": 0,
+    "positionStrictIdCorrect": 0,
+    "registryPositionEvaluated": 100,
+    "registryPositionCorrect": 0,
+    "skillTP": 277,
+    "skillFP": 117,
+    "skillFN": 40,
+    "evidenceTotal": 494,
+    "evidenceSupported": 494,
+    "newSkillTP": 0,
+    "newSkillFP": 0,
+    "newSkillFN": 0,
+    "candidatePositionCorrect": 0,
+    "candidatePositionEvaluated": 0
+  },
+  "positionRegistry": [
+    {
+      "id": "gt_pos_05c30320961e",
+      "name": "AI制药算法工程师"
+    },
+    {
+      "id": "gt_pos_13517cd56e7a",
+      "name": "数据库与检索工程师"
+    },
+    {
+      "id": "gt_pos_178ff61c2435",
+      "name": "大模型算法工程师"
+    },
+    {
+      "id": "gt_pos_3dc1aa7054c4",
+      "name": "计算机视觉与多模态算法工程师"
+    },
+    {
+      "id": "gt_pos_46646051f3d3",
+      "name": "AI计算与编译优化工程师"
+    },
+    {
+      "id": "gt_pos_4c2cc6d4dcd0",
+      "name": "搜索算法工程师"
+    },
+    {
+      "id": "gt_pos_54573325618f",
+      "name": "决策算法工程师"
+    },
+    {
+      "id": "gt_pos_5d25a1e24a0f",
+      "name": "数据开发工程师"
+    },
+    {
+      "id": "gt_pos_6710c7c64455",
+      "name": "机器学习平台工程师"
+    },
+    {
+      "id": "gt_pos_686f66ef3822",
+      "name": "AI基础设施工程师"
+    },
+    {
+      "id": "gt_pos_6b08f267d39d",
+      "name": "语音与自然语言处理算法工程师"
+    },
+    {
+      "id": "gt_pos_6bf041d6a38e",
+      "name": "移动系统与多媒体开发工程师"
+    },
+    {
+      "id": "gt_pos_77d933980a53",
+      "name": "后端开发工程师"
+    },
+    {
+      "id": "gt_pos_7cfe3c45053c",
+      "name": "游戏开发工程师"
+    },
+    {
+      "id": "gt_pos_8edab7a67c1d",
+      "name": "通用算法工程师"
+    },
+    {
+      "id": "gt_pos_918395272a17",
+      "name": "数据标注与治理工程师"
+    },
+    {
+      "id": "gt_pos_a498e48e0877",
+      "name": "AI应用开发工程师"
+    },
+    {
+      "id": "gt_pos_a9805503e9db",
+      "name": "EHS安全管理专家"
+    },
+    {
+      "id": "gt_pos_abd2ce939a49",
+      "name": "网络基础设施工程师"
+    },
+    {
+      "id": "gt_pos_c23d99409878",
+      "name": "数据挖掘与分析工程师"
+    },
+    {
+      "id": "gt_pos_c6aa66f61445",
+      "name": "AI智能体工程师"
+    },
+    {
+      "id": "gt_pos_c7d16ea046c9",
+      "name": "AI模型评测工程师"
+    },
+    {
+      "id": "gt_pos_cb341f49a041",
+      "name": "大模型系统工程师"
+    },
+    {
+      "id": "gt_pos_cda21e8912a0",
+      "name": "安全工程师"
+    },
+    {
+      "id": "gt_pos_cf266d2eddda",
+      "name": "AI质量与测试工程师"
+    },
+    {
+      "id": "gt_pos_eb2770690111",
+      "name": "金融投资分析师"
+    },
+    {
+      "id": "gt_pos_f8dd75352fbe",
+      "name": "风控算法工程师"
+    },
+    {
+      "id": "gt_pos_fd6961d6bdfb",
+      "name": "推荐与广告算法工程师"
+    }
+  ],
+  "weights": {
+    "scopeMacroF1": 0.1,
+    "positionAccuracy": 0.35,
+    "skillMicroF1": 0.45,
+    "requirementTypeMacroF1": 0.1
+  },
+  "pass": {
+    "coreScore": false,
+    "positionAccuracy": false,
+    "skillMicroF1": false,
+    "evidenceSupportRate": true,
+    "overall": false
+  },
+  "errorCases": [
+    {
+      "sourceId": "alibaba_campus:199903720037",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_eb2770690111",
+      "positionPredicted": "candidate_e708a3816d",
+      "positionPredictedNormalized": "candidate_e708a3816d",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199905060005",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_c7d16ea046c9",
+      "positionPredicted": "candidate_0d8acbf9c1",
+      "positionPredictedNormalized": "candidate_0d8acbf9c1",
+      "missingSkills": [
+        "skill_llm",
+        "skill_testing"
+      ],
+      "extraSkills": [
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199907780113",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_918395272a17",
+      "positionPredicted": "candidate_87d699fe6a",
+      "positionPredictedNormalized": "candidate_87d699fe6a",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7224465349646797117",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_686f66ef3822",
+      "positionPredicted": "candidate_6781581020",
+      "positionPredictedNormalized": "candidate_6781581020",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7262932430881098044",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_13517cd56e7a",
+      "positionPredicted": "candidate_cc6ff11f93",
+      "positionPredictedNormalized": "candidate_cc6ff11f93",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7307438108063828251",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_abd2ce939a49",
+      "positionPredicted": "candidate_f1be9fe948",
+      "positionPredictedNormalized": "candidate_f1be9fe948",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7319716293929371942",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cda21e8912a0",
+      "positionPredicted": "candidate_acda185a62",
+      "positionPredictedNormalized": "candidate_acda185a62",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7376513558744582410",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_125d6e6c05",
+      "positionPredictedNormalized": "candidate_125d6e6c05",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7436295849074018568",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_44255f797f",
+      "positionPredictedNormalized": "candidate_44255f797f",
+      "missingSkills": [
+        "skill_frontend"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7480100476046887176",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_6e0c8e8d64",
+      "positionPredictedNormalized": "candidate_6e0c8e8d64",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7504224784105982226",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_71376781be",
+      "positionPredictedNormalized": "candidate_71376781be",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7544983430413863175",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_f255a7f59e",
+      "positionPredictedNormalized": "candidate_f255a7f59e",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7566272650435070213",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cb341f49a041",
+      "positionPredicted": "candidate_41a6e5ff10",
+      "positionPredictedNormalized": "candidate_41a6e5ff10",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7614022756816947509",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_4a82d1456e",
+      "positionPredictedNormalized": "candidate_4a82d1456e",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7628535364558801157",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_b55f1591d6",
+      "positionPredictedNormalized": "candidate_b55f1591d6",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7662317846786967813",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "candidate_17413ea90d",
+      "positionPredictedNormalized": "candidate_17413ea90d",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_frontend",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2070518525277155328",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_686f66ef3822",
+      "positionPredicted": "candidate_12e330b3ec",
+      "positionPredictedNormalized": "candidate_12e330b3ec",
+      "missingSkills": [
+        "skill_ai_codegen",
+        "skill_distributed"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_llm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2075441482017456128",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_c6aa66f61445",
+      "positionPredicted": "candidate_943f86c5a4",
+      "positionPredictedNormalized": "candidate_943f86c5a4",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903900044",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_3dc1aa7054c4",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_llm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6970968861713631524",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_nlp"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6997642440045283615",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_4c2cc6d4dcd0",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7273737124662577465",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_6710c7c64455",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database",
+        "skill_hardware",
+        "skill_nlp",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7319490821325621513",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_3dc1aa7054c4",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7387626281683208499",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_3dc1aa7054c4",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7451900636330854664",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_c23d99409878",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7486049922472429831",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_8edab7a67c1d",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7507108030464231688",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_3dc1aa7054c4",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_nlp"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7573946468399122741",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_f8dd75352fbe",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7595809049083742469",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_llm",
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7657109112141269301",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_6b08f267d39d",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_ai_codegen"
+      ],
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "meituan_careers:4530808139",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_54573325618f",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_distributed"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2051888471664148480",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_f8dd75352fbe",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2037377303213932544",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_6b08f267d39d",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_nlp"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7633454879164860677",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_77d933980a53",
+      "positionPredicted": "pos_backend_engineer",
+      "positionPredictedNormalized": "pos_backend_engineer",
+      "missingSkills": [
+        "skill_llm"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2043623808224620544",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_7cfe3c45053c",
+      "positionPredicted": "pos_backend_engineer",
+      "positionPredictedNormalized": "pos_backend_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7460745521352558856",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_abd2ce939a49",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7491139823441545490",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_13517cd56e7a",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7651427161494997253",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_abd2ce939a49",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:1958073221844717568",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_686f66ef3822",
+      "positionPredicted": "pos_cloud_infra_engineer",
+      "positionPredictedNormalized": "pos_cloud_infra_engineer",
+      "missingSkills": [
+        "skill_distributed",
+        "skill_python"
+      ],
+      "extraSkills": [
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7613273119528077573",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_5d25a1e24a0f",
+      "positionPredicted": "pos_data_engineer",
+      "positionPredictedNormalized": "pos_data_engineer",
+      "missingSkills": [
+        "skill_database",
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2054924143715074048",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_7cfe3c45053c",
+      "positionPredicted": "pos_game_engineer",
+      "positionPredictedNormalized": "pos_game_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2046790708928606208",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_7cfe3c45053c",
+      "positionPredicted": "pos_game_engineer",
+      "positionPredictedNormalized": "pos_game_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7457906644464470290",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_46646051f3d3",
+      "positionPredicted": "pos_hardware_engineer",
+      "positionPredictedNormalized": "pos_hardware_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7579145566169794869",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_46646051f3d3",
+      "positionPredicted": "pos_hardware_engineer",
+      "positionPredictedNormalized": "pos_hardware_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7645147766880586037",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_46646051f3d3",
+      "positionPredicted": "pos_hardware_engineer",
+      "positionPredictedNormalized": "pos_hardware_engineer",
+      "missingSkills": [
+        "skill_algorithm"
+      ],
+      "extraSkills": [
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903980007",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_python"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7303429702801672475",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_ai_codegen",
+        "skill_algorithm",
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7320520262447941926",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_ai_codegen",
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7491557157738760455",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_c7d16ea046c9",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_algorithm"
+      ],
+      "extraSkills": [
+        "skill_multimodal",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7642282081599244549",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_a498e48e0877",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2069242484575350784",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_c6aa66f61445",
+      "positionPredicted": "pos_llm_engineer",
+      "positionPredictedNormalized": "pos_llm_engineer",
+      "missingSkills": [
+        "skill_frontend",
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7469705639338789138",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cda21e8912a0",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7490887863455533320",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cda21e8912a0",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database",
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7599967803991148805",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_f8dd75352fbe",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7645207336668399925",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cda21e8912a0",
+      "positionPredicted": "pos_security_engineer",
+      "positionPredictedNormalized": "pos_security_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6704577570391722253",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_13517cd56e7a",
+      "positionPredicted": "pos_storage_database_engineer",
+      "positionPredictedNormalized": "pos_storage_database_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_go",
+        "skill_java",
+        "skill_python",
+        "skill_security",
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7031784693481965861",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_13517cd56e7a",
+      "positionPredicted": "pos_storage_database_engineer",
+      "positionPredictedNormalized": "pos_storage_database_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_go",
+        "skill_java",
+        "skill_python",
+        "skill_security",
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2028713319375994880",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_13517cd56e7a",
+      "positionPredicted": "pos_storage_database_engineer",
+      "positionPredictedNormalized": "pos_storage_database_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6850352073797749006",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [
+        "skill_testing"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_java",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:6961289793582418212",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [
+        "skill_cloud_native"
+      ],
+      "extraSkills": [
+        "skill_java",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7039216503480125709",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7299004256262375718",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7634137448259815733",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "pos_test_engineer",
+      "positionPredictedNormalized": "pos_test_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_cpp",
+        "skill_java"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199906500001",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_a498e48e0877",
+      "positionPredicted": "candidate_d1603b5625",
+      "positionPredictedNormalized": "candidate_d1603b5625",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_distributed",
+        "skill_frontend",
+        "skill_java",
+        "skill_multimodal",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903720003",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "candidate_39f205e266",
+      "positionPredictedNormalized": "candidate_39f205e266",
+      "missingSkills": [
+        "skill_python"
+      ],
+      "extraSkills": [
+        "skill_multi_agent",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7305009305282693427",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6bf041d6a38e",
+      "positionPredicted": "candidate_1ee2d988ef",
+      "positionPredictedNormalized": "candidate_1ee2d988ef",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7347535879454853427",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_46646051f3d3",
+      "positionPredicted": "candidate_175298d89a",
+      "positionPredictedNormalized": "candidate_175298d89a",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7366450100144523570",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_46646051f3d3",
+      "positionPredicted": "candidate_213d0b380e",
+      "positionPredictedNormalized": "candidate_213d0b380e",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7429623668390562086",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_7cfe3c45053c",
+      "positionPredicted": "candidate_8cc0fd6f3f",
+      "positionPredictedNormalized": "candidate_8cc0fd6f3f",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7476076805125114119",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_abd2ce939a49",
+      "positionPredicted": "candidate_79bd802c48",
+      "positionPredictedNormalized": "candidate_79bd802c48",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7488975921577232647",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "candidate_8c62bde573",
+      "positionPredictedNormalized": "candidate_8c62bde573",
+      "missingSkills": [
+        "skill_llm"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7532398230567422226",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_abd2ce939a49",
+      "positionPredicted": "candidate_7e0879719d",
+      "positionPredictedNormalized": "candidate_7e0879719d",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7572505826717878581",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_77d933980a53",
+      "positionPredicted": "candidate_f501d50811",
+      "positionPredictedNormalized": "candidate_f501d50811",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7602479742055909685",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_05c30320961e",
+      "positionPredicted": "candidate_d7ad34daf3",
+      "positionPredictedNormalized": "candidate_d7ad34daf3",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7654133341323495733",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_a9805503e9db",
+      "positionPredicted": "candidate_5808c7d59f",
+      "positionPredictedNormalized": "candidate_5808c7d59f",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7662316424701987077",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cf266d2eddda",
+      "positionPredicted": "candidate_17413ea90d",
+      "positionPredictedNormalized": "candidate_17413ea90d",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_frontend",
+        "skill_rag_eval",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2065266730669879296",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_7cfe3c45053c",
+      "positionPredicted": "candidate_f111e55521",
+      "positionPredictedNormalized": "candidate_f111e55521",
+      "missingSkills": [
+        "skill_cpp"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2076872257417949184",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_7cfe3c45053c",
+      "positionPredicted": "candidate_296a0336dc",
+      "positionPredictedNormalized": "candidate_296a0336dc",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199903880033",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_6b08f267d39d",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_cpp",
+        "skill_java",
+        "skill_multimodal",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7275634921082571066",
+      "scopeExpected": "review",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_6710c7c64455",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_database",
+        "skill_java",
+        "skill_nlp",
+        "skill_security"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7312671781399316774",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7321928529616308489",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_3dc1aa7054c4",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_cpp",
+        "skill_go",
+        "skill_java",
+        "skill_python"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7366888370556995850",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_ai_codegen"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7623304135925090565",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_4c2cc6d4dcd0",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2037101976877170688",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cb341f49a041",
+      "positionPredicted": "candidate_3a5b379723",
+      "positionPredictedNormalized": "candidate_3a5b379723",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199906700003",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_a498e48e0877",
+      "positionPredicted": "candidate_fa45e236e7",
+      "positionPredictedNormalized": "candidate_fa45e236e7",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_multimodal"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "meituan_careers:4530913541",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_hardware"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7621535059103303989",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_multi_agent"
+      ],
+      "extraSkills": [
+        "skill_sql"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:1932983235067904000",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_abd2ce939a49",
+      "positionPredicted": "candidate_e4e986c03e",
+      "positionPredictedNormalized": "candidate_e4e986c03e",
+      "missingSkills": [
+        "skill_cloud_native",
+        "skill_distributed",
+        "skill_testing"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199907880001",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cb341f49a041",
+      "positionPredicted": "candidate_b3cb873170",
+      "positionPredictedNormalized": "candidate_b3cb873170",
+      "missingSkills": [
+        "skill_hardware"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7491665085673720071",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2076924809798922240",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_a498e48e0877",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm",
+        "skill_frontend"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199904260008",
+      "scopeExpected": "review",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_918395272a17",
+      "positionPredicted": "candidate_098ee09013",
+      "positionPredictedNormalized": "candidate_098ee09013",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_llm",
+        "skill_rag_eval"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7525465167627782408",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:1902190189934100480",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_cb341f49a041",
+      "positionPredicted": "candidate_c901966c4f",
+      "positionPredictedNormalized": "candidate_c901966c4f",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_algorithm"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199905160003",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_918395272a17",
+      "positionPredicted": "candidate_5ab19e3196",
+      "positionPredictedNormalized": "candidate_5ab19e3196",
+      "missingSkills": [],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7514636368456599826",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_fd6961d6bdfb",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_nlp"
+      ],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "tencent_careers:2054521545946214400",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "in_scope",
+      "positionExpected": "gt_pos_f8dd75352fbe",
+      "positionPredicted": "pos_algorithm_engineer",
+      "positionPredictedNormalized": "pos_algorithm_engineer",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "alibaba_campus:199907980002",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_178ff61c2435",
+      "positionPredicted": "candidate_c6b36b3cec",
+      "positionPredictedNormalized": "candidate_c6b36b3cec",
+      "missingSkills": [
+        "skill_distributed"
+      ],
+      "extraSkills": [],
+      "unsupportedEvidenceCount": 0
+    },
+    {
+      "sourceId": "bytedance:7628921421481232645",
+      "scopeExpected": "in_scope",
+      "scopePredicted": "candidate",
+      "positionExpected": "gt_pos_6710c7c64455",
+      "positionPredicted": "candidate_cb3ddeb176",
+      "positionPredictedNormalized": "candidate_cb3ddeb176",
+      "missingSkills": [],
+      "extraSkills": [
+        "skill_database"
+      ],
+      "unsupportedEvidenceCount": 0
+    }
+  ]
+}

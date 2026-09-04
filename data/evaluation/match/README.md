@@ -8,6 +8,8 @@ Ground Truth标注每份简历的唯一最佳岗位、可接受岗位集合、�
 
 综合分权重：Top-1 30%、Top-3 15%、NDCG@3 10%、等级Macro-F1 15%、缺失技能micro-F1 20%、已匹配技能micro-F1 10%。开发通过线为综合分80%、Top-1 80%、Top-3 90%。
 
+当前复跑结果写入 `output/evaluation/match_evaluation_report_10_v1.json`：Top-1 Accuracy 100.00%、Top-3 Accuracy 100.00%、MRR 100.00%、NDCG@3 95.31%、等级Macro-F1 100.00%、综合分95.08%。当前仍为10份开发集结果，正式评测需扩充样本并完成专家复核。
+
 ```bash
 python -m src.evaluation.generate_match_predictions \
   --resume-ground-truth data/evaluation/resume/resume_ground_truth_10_v1.jsonl \

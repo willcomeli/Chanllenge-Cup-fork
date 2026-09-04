@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import AppLayout from './components/layout/AppLayout'
 import DashboardPage from './pages/DashboardPage'
 import EvolutionPage from './pages/EvolutionPage'
@@ -8,6 +8,16 @@ import ReviewPage from './pages/ReviewPage'
 import { useAppRouter } from './router'
 
 const GraphPage = lazy(() => import('./pages/GraphPage'))
+
+function RedirectToDashboard() {
+  const { navigate } = useAppRouter()
+
+  useEffect(() => {
+    navigate('/dashboard')
+  }, [navigate])
+
+  return null
+}
 
 export default function App() {
   const { path } = useAppRouter()
@@ -20,5 +30,5 @@ export default function App() {
     '/review': <ReviewPage />,
   }
 
-  return <AppLayout>{pages[path] ?? <DashboardPage />}</AppLayout>
+  return <AppLayout>{pages[path] ?? <RedirectToDashboard />}</AppLayout>
 }

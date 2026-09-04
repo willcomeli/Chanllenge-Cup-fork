@@ -112,15 +112,24 @@ def _normalize_position(raw: Any, record: dict[str, Any]) -> dict[str, Any]:
         raw = {}
     position_id = str(raw.get("id") or raw.get("positionId") or raw.get("expectedPositionId") or "")
     position_names = _position_name_map()
+    raw_name = str(raw.get("name") or record.get("title") or "候选新岗位")
+    if position_id == "candidate_other":
+        return {
+            "id": position_id,
+            "name": raw_name,
+            "confidence": _clamp_confidence(raw.get("confidence"), 0.55),
+            "source": "llm",
+            "evidenceText": str(raw.get("evidenceText") or record.get("title") or "")[:240],
+        }
     if position_id not in position_names:
         if _CUSTOM_POSITION_NAME_MAP is None:
             position_id = _position_for_record(record)
         else:
             position_id = "candidate_other"
-    is_candidate = position_id.startswith("candidate_")
+    is_candidate = position_id.startswith("candidate_") or position_id == "candidate_other"
     return {
         "id": position_id,
-        "name": position_names.get(position_id, str(raw.get("name") or record.get("title") or "候选新岗位")),
+        "name": position_names.get(position_id, raw_name),
         "confidence": _clamp_confidence(raw.get("confidence"), 0.55 if is_candidate else 0.75),
         "source": "llm",
         "evidenceText": str(raw.get("evidenceText") or record.get("title") or "")[:240],
@@ -238,7 +247,7 @@ def normalize_llm_item(raw: dict[str, Any], record: dict[str, Any], *, split: st
         "title": record.get("title") or "",
         "publishTime": record.get("publish_time") or "",
         "scrapedAt": record.get("scraped_at") or "",
-        "scope": str(raw.get("scope") or ("candidate" if position["id"].startswith("candidate_") else "in_scope")),
+        "scope": str(raw.get("scope") or ("review" if position["id"].startswith("candidate_") or position["id"] == "candidate_other" else "in_scope")),
         "position": position,
         "positionId": position["id"],
         "positionName": position["name"],

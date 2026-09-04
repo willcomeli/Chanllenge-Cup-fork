@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pytest
+import time
 from fastapi.testclient import TestClient
 
 from backend.app.main import app
@@ -147,6 +148,24 @@ def test_create_resume_task_accepts_injected_llm_client() -> None:
 
     assert task["result"]["analysisSource"] == "llm"
     assert task["result"]["llmAnalysis"]["model"] == "fake-resume-llm"
+
+
+def test_background_resume_task_uses_llm_when_enabled() -> None:
+    created = create_resume_task(
+        filename="resume.txt",
+        content=SAMPLE_RESUME.encode("utf-8"),
+        llm_client=FakeResumeLlmClient(),
+        background=True,
+    )
+    deadline = time.time() + 2
+    task = get_resume_task(created["taskId"])
+    while task["status"] == "processing" and time.time() < deadline:
+        time.sleep(0.01)
+        task = get_resume_task(created["taskId"])
+
+    assert task["status"] == "completed"
+    assert task["result"]["analysisSource"] == "llm"
+    assert task["result"]["llmAnalysis"]["status"] == "completed"
 
 
 def test_resume_task_lifecycle_supports_upload_and_delta_skill_patch() -> None:
